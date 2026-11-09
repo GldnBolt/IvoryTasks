@@ -1,0 +1,32 @@
+name: Windows validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-build:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Test persistence, synchronization, Graph boundaries, and widget cards
+        run: dotnet test tests/Ivory.Tests/Ivory.Tests.csproj -c Release --logger "trx;LogFileName=tests.trx" --results-directory TestResults
+      - name: Build WinUI desktop
+        run: dotnet build src/Ivory.Desktop/Ivory.Desktop.csproj -c Release -p:Platform=x64
+      - name: Build Windows widget provider
+        run: dotnet build src/Ivory.Widget/Ivory.Widget.csproj -c Release -p:Platform=x64
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-test-results
+          path: TestResults/*.trx
+          if-no-files-found: ignore
