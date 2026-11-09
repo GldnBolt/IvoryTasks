@@ -1,0 +1,1 @@
+<Project Sdk="Microsoft.NET.Sdk"><PropertyGroup><TargetFramework>net8.0</TargetFramework></PropertyGroup><ItemGroup><ProjectReference Include="../Ivory.Core/Ivory.Core.csproj"/><PackageReference Include="Microsoft.Identity.Client" Version="4.77.1"/><PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0"/></ItemGroup></Project>
