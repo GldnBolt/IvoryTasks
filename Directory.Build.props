@@ -1,0 +1,1 @@
+<Project><PropertyGroup><Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings><LangVersion>12</LangVersion><EnableWindowsTargeting>true</EnableWindowsTargeting><RestorePackagesWithLockFile>true</RestorePackagesWithLockFile><WindowsSdkPackageVersion>10.0.22621.38</WindowsSdkPackageVersion></PropertyGroup></Project>

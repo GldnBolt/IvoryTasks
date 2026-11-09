@@ -1,0 +1,7 @@
+<Project>
+  <ItemGroup>
+    <!-- Pin only .NET runtime references; the global property also overrides Windows SDK projections in older SDKs. -->
+    <FrameworkReference Update="Microsoft.NETCore.App" RuntimeFrameworkVersion="8.0.33" />
+    <FrameworkReference Update="Microsoft.WindowsDesktop.App.WindowsForms" RuntimeFrameworkVersion="8.0.33" />
+  </ItemGroup>
+</Project>
