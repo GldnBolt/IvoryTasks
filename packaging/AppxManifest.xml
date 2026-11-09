@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10" xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10" xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities" IgnorableNamespaces="uap uap3 desktop com rescap">
+  <Identity Name="GldnBolt.IvoryTasks" Publisher="CN=IvoryTasks" Version="1.0.0.0" ProcessorArchitecture="x64"/>
+  <Properties><DisplayName>Ivory Tasks</DisplayName><PublisherDisplayName>Ivory Tasks</PublisherDisplayName><Logo>Assets\StoreLogo.png</Logo></Properties>
+  <Dependencies><TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.22621.0" MaxVersionTested="10.0.26100.0"/></Dependencies>
+  <Resources><Resource Language="en-us"/></Resources>
+  <Applications>
+    <Application Id="App" Executable="App\IvoryTasks.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements DisplayName="Ivory Tasks" Description="A little more clarity. Tasks with Microsoft To Do and Windows Widgets." Square150x150Logo="Assets\Square150.png" Square44x44Logo="Assets\Square44.png" BackgroundColor="#FAF8F3"/>
+      <Extensions>
+        <uap:Extension Category="windows.protocol"><uap:Protocol Name="ivorytasks"><uap:DisplayName>Ivory Tasks</uap:DisplayName></uap:Protocol></uap:Extension>
+        <desktop:Extension Category="windows.startupTask" Executable="App\IvoryTasks.exe" EntryPoint="Windows.FullTrustApplication"><desktop:StartupTask TaskId="IvoryStartup" Enabled="false" DisplayName="Ivory Tasks"/></desktop:Extension>
+        <com:Extension Category="windows.comServer"><com:ComServer><com:ExeServer Executable="Widget\IvoryWidget.exe" DisplayName="Ivory Widget"><com:Class Id="58125CC9-C763-46EF-9C95-D2076099C047" DisplayName="Ivory Widget"/></com:ExeServer></com:ComServer></com:Extension>
+        <uap3:Extension Category="windows.appExtension">
+          <uap3:AppExtension Name="com.microsoft.windows.widgets" DisplayName="Ivory Tasks" Id="IvoryTasksProvider" PublicFolder="Public">
+            <uap3:Properties><WidgetProvider>
+              <ProviderIcons><Icon Path="Assets\StoreLogo.png"/></ProviderIcons>
+              <Activation><CreateInstance ClassId="58125CC9-C763-46EF-9C95-D2076099C047"/></Activation>
+              <Definitions><Definition Id="IvoryTasks" DisplayName="Ivory · My tasks" Description="Today, overdue, upcoming, and important tasks" AllowMultiple="true">
+                <Capabilities><Capability><Size Name="small"/></Capability><Capability><Size Name="medium"/></Capability><Capability><Size Name="large"/></Capability></Capabilities>
+                <ThemeResources><Icons><Icon Path="Assets\StoreLogo.png"/></Icons><Screenshots><Screenshot Path="Assets\WidgetPreview.png" DisplayAltText="Ivory tasks with completion and refresh actions"/></Screenshots><DarkMode/><LightMode/></ThemeResources>
+              </Definition></Definitions>
+            </WidgetProvider></uap3:Properties>
+          </uap3:AppExtension>
+        </uap3:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities><rescap:Capability Name="runFullTrust"/><Capability Name="internetClient"/></Capabilities>
+</Package>
